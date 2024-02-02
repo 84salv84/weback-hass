@@ -1,0 +1,17 @@
+name: mirror-test
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  job:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: yesolutions/mirror-action@master
+        with:
+          REMOTE: git@gitlab.com/SisalOrg/test-microgame.git
+          GIT_SSH_PRIVATE_KEY: ${{ secrets.GIT_SISAL_MG_SSH_PRIVATE_KEY }}
+          GIT_SSH_NO_VERIFY_HOST: "true"
